@@ -1,0 +1,29 @@
+extends shared/layout
+block main-content
+    h1(class="jumbotron") Welcome to Youtube Playlist System
+    .container
+        .row
+            .col-md-6.col-md-offset-3
+                h1.text-center Public Playlists
+                br
+                table.table-bordered.table
+                    tr
+                        th Title
+                        th Date
+                        th Creator
+                        th Videos
+                    each playlist in data.playlists
+                        tr
+                            td #{playlist.title}
+                            td #{playlist.creationDate.toLocaleString()}
+                            td #{playlist.creator}
+                            td
+                                - for(var i=0;i<playlist.videoUrls.length;i+=1)
+                                    li
+                                        a(href="#{playlist.videoUrls[i]}") View #{i+1}
+                br
+                ul.list-unstyled.list-inline.text-center
+                    - for(var i = 1; i < data.total / data.pageSize; i++)
+                    li
+                        a.btn.btn-lf.btn-primary(href="/playlists/visible?page=#{i}&pageSize=#{data.pageSize}") #{i}
+                strong.text-info.text-center This page uses Cache for 10 minutes!

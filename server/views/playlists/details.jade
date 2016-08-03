@@ -1,0 +1,38 @@
+extends ../shared/layout
+block main-content
+    form(method="post")
+        h1 #{data.playlists[0].title}
+        br
+        div rating:
+            strong #{data.playlists[0].rating}
+        br
+        if(data.playlists[0].isPrivate)
+            div
+                strong private
+        br
+        div date:
+            strong #{data.playlists[0].creationDate.toLocaleString()}
+        br
+        div category:
+            strong #{data.playlists[0].category}
+        br
+        div videos:
+            each video in data.playlists[0].videoUrls
+                li
+                    a(href="#{video}") View #{video}
+        label(for="videoUrls") Video Url
+        input(id="videoUrls" class="form-control" type="text" name="videoUrls" placeholder="Video Url")
+        br
+        div visible to:
+            strong #{data.playlists[0].visibleTo}
+        label(for="visibleTo") Visible to user
+        input(id="visibleTo" class="form-control" type="text" name="visibleTo" placeholder="user")
+        br
+        div comments:
+            each comment in data.playlists[0].comments
+                li
+                    strong #{comment.username} - #{comment.content}
+        label(for="comments") comments
+        input(id="comments" class="form-control" type="text" name="comments" placeholder="Comment")
+        br
+        input(type="submit" class="btn btn-lg" value="Update")

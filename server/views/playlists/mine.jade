@@ -1,0 +1,25 @@
+extends ../shared/layout
+block main-content
+    h1 My Youtube Playlists
+    .container
+        .row
+            .col-md-6.col-md-offset-3
+                table.table-bordered.table
+                    tr
+                        th Title
+                        th Date
+                        th Creator
+                        th Videos
+                        th Action
+                    each playlist in data.playlists
+                        tr
+                            td #{playlist.title}
+                            td #{playlist.creationDate.toLocaleString()}
+                            td #{playlist.creator}
+                            td
+                                each video in playlist.videoUrls
+                                    li
+                                        a(href="#{video}") View
+                            td
+                                a(href="/playlists/mine/#{playlist._id}") Add video
+                br

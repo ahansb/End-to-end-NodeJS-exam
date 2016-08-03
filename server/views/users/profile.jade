@@ -1,0 +1,41 @@
+extends ../shared/layout
+block main-content
+    h1 User Profile
+    form(method="post")
+        label Username
+        div #{data.username}
+        br
+        label(for="password") New Password
+        input(id="password" class="form-control" type="password" name="password" placeholder="Password")
+        br
+        label(for="confirm-password") Confirm Password
+        input(id="confirm-password" class="form-control" type="password" name="confirmPassword" placeholder="Confirm password")
+        br
+        label(for="first-name") First Name
+        div #{data.firstName}
+        input(id="first-name" class="form-control" type="text" name="firstName" placeholder="First Name")
+        br
+        label(for="last-name") Last Name
+        div #{data.lastName}
+        input(id="last-name" class="form-control" type="text" name="lastName" placeholder="Last Name")
+        br
+        label(for="email") Email
+        div #{data.email}
+        input(id="email" class="form-control" type="email" name="email" placeholder="Email")
+        br
+        if (data.youtube)
+            label(for="youtube") Youtube Profile
+            input(id="youtube" class="form-control" type="text" name="youtube" placeholder="Youtube Link")
+            br
+            div #{data.youtube}
+        if (data.facebook)
+            label(for="facebook") Facebook Profile
+            div #{data.facebook}
+            input(id="facebook" class="form-control" type="text" name="facebook" placeholder="Facebook Link")
+            br
+        label(for="avatar") Profile Picture
+        img(src="#{data.avatar}" class="profile-image")
+        input(id="avatar" class="form-control" type="text" name="avatar" placeholder="Profile Picture")
+        br
+
+        input(type="submit" class="btn btn-lg" value="Update")

@@ -1,0 +1,51 @@
+doctype
+html
+    head
+        title Minion System
+        link(rel="stylesheet" href="/lib/bootstrap-3.2.0/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/css/site.css")
+        link(href="../favicon.ico" rel="icon" type="image/x-icon")
+        link(rel="stylesheet" href="/lib/jquery-ui/themes/smoothness/jquery-ui.min.css")
+    body
+        header.nav
+        .container
+            .navbar-header
+                img(src= "../minion-hello.jpg" class="img-responsive" class="center-block" width="100")
+                a.navbar-brand(href="/") Youtube Playlist System
+            .navbar-collapse.collapse
+                ul.nav.navbar-nav
+                    li
+
+                    li(width="100")
+                        a(href="/")
+                    li
+                        a(href="/") Home
+                    if (currentUser)
+                        li
+                            a(href="/playlists/create") Create Playlist
+                        li
+                            a(href="/playlists/visibleToMe") Visible to me Playlists
+                        li
+                            a(href="/playlists/mine") My Playlist
+                        li
+                            a(href="/profile" class="logged-in") #{currentUser.username}
+                        li
+                            a(href="/logout" class="log-out") Logout
+                    if (!currentUser)
+                        li
+                            a(href="/register") Register
+                        li
+                            a(href="/login") Login
+
+        .container
+            if (errorMessage)
+                .alert.alert-danger #{errorMessage}
+
+            block main-content
+         br
+        footer
+            p.text-center
+                | &copy; Telerik Academy 2015/2016
+            img( class="center-block" src="http://i.imgur.com/hWnGbTf.jpg" width="250")
+
+        include scripts
